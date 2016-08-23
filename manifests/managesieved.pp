@@ -9,10 +9,16 @@ class dovecot::managesieved {
     default  => 'dovecot-managesieved',
   }
 
+  $mail_package = $::osfamily ? {
+    default  => 'dovecot-imapd',
+    'Debian' => 'dovecot-imapd',
+    'Redhat' => 'dovecot',
+  }
+
   package { $package_name :
       ensure  => installed,
       before  => Exec['dovecot'],
-      require => Package['dovecot'],
+      require => $package_name,
       alias   => 'dovecot-managesieved',
   }
 
