@@ -1,3 +1,5 @@
+# 90-plugin.conf *or*
+# 90-sieve.conf
 class dovecot::sieve (
   $username  = 'vmail',
   $groupname = 'vmail',
@@ -17,11 +19,16 @@ class dovecot::sieve (
     'Redhat' => 'dovecot-pigeonhole',
     default  => 'dovecot-sieve',
   }
+  $mailpackages = $::osfamily ? {
+    default  => ['dovecot-imapd', 'dovecot-pop3d'],
+    'Debian' => ['dovecot-imapd', 'dovecot-pop3d'],
+    'Redhat' => ['dovecot',]
+  }
 
   package { $package_name :
       ensure  => installed,
       before  => Exec['dovecot'],
-      require => Package['dovecot'],
+      require => Package[$mailpackages],
       alias   => 'dovecot-sieve',
   }
 
