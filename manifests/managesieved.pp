@@ -18,7 +18,7 @@ class dovecot::managesieved {
   package { $package_name :
       ensure  => installed,
       before  => Exec['dovecot'],
-      require => $package_name,
+      require => $mail_package,
       alias   => 'dovecot-managesieved',
   }
 
