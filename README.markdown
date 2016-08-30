@@ -1,7 +1,5 @@
 # dovecot #
 
-master branch: [![Build Status](https://secure.travis-ci.org/mjhas/dovecot.png?branch=master)](http://travis-ci.org/mjhas/dovecot)
-
 This is the dovecot module. It provides installation and configuration routines using Puppet.
 
 Simplest Configuration:
@@ -44,13 +42,3 @@ Real World Configuration:
     include dovecot::imap
     include dovecot::base
     include dovecot::auth
-
-Something more fancy.
-
-## Contributors
-
-[Andschwa](https://github.com/andschwa)
-[hdeadman](https://github.com/hdeadman)
-[WBasson](https://github.com/WBasson)
-[tthayer](https://github.com/tthayer)
-
