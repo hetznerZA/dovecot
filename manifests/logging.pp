@@ -5,7 +5,7 @@ class dovecot::logging (
   $auth_debug_passwords = 'no',
   $mail_debug           = 'no',
   $verbose_ssl          = 'no',
-  $log_timestamp        = '%b %d %H:%M:%S ',
+  $log_timestamp        = false,
 ) {
   include dovecot
 
