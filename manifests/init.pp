@@ -9,7 +9,7 @@ class dovecot(
     'Redhat' => ['dovecot',]
   }
 
-  $needs_dovecot_lens = $::osfamily != 'Debian' or $::lsbmajdistrelease < 8
+  $needs_dovecot_lens = $::osfamily != 'Debian' or $::lsbmajdistrelease == '7'
 
   ensure_packages([$mailpackages], { 'configfiles' => $package_configfiles })
 
