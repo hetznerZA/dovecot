@@ -12,7 +12,7 @@ class dovecot::lmtp (
   # This setup is targeted toward use with Postfix via a unix socket.
 
   if $compress_mail == 'on' {
-    $plugins = "${mail_plugins} zlib"
+    $plugins = "${mail_plugins} zlib sieve"
   } else {
     $plugins = $mail_plugins
   }
