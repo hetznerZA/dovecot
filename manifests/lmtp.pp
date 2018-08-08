@@ -3,12 +3,19 @@ class dovecot::lmtp (
   $mail_plugins       = '$mail_plugins',
   $postmaster_address = "root@${::fqdn}",
   $lmtp_path          = '/var/spool/postfix/private/dovecot-lmtp',
+  $compress_mail      = 'off'
   ) {
   include dovecot
   include dovecot::master # Must be included so that dovecot::master::postfix_* resolve
 
   # See the [Dovecot wiki](http://wiki2.dovecot.org/HowTo/PostfixDovecotLMTP) for more information.
   # This setup is targeted toward use with Postfix via a unix socket.
+
+  if $compress_mail == 'on' {
+    $plugins = "${mail_plugins} zlib"
+  } else {
+    $plugins = $mail_plugins
+  }
 
   $package_name = $::osfamily ? {
     'Debian' => 'dovecot-lmtpd',
